@@ -45,6 +45,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Suppress notifications while in maintenance
+    |--------------------------------------------------------------------------
+    |
+    | Whether to suppress notification channels if an issue is created during
+    | planned or in-progress maintenance periods.
+    |
+    */
+
+    'suppress_notifications_in_maintenance' => true,
+
+    /*
+    |--------------------------------------------------------------------------
     | Automatic Localization
     |--------------------------------------------------------------------------
     |
@@ -109,4 +121,16 @@ return [
     */
 
     'only_disrupted_days' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Always authenticate
+    |--------------------------------------------------------------------------
+    |
+    | Whether to lock down Cachet and only allow viewing pages
+    | when authenticated.
+    |
+    */
+
+    'always_authenticate' => false,
 ];

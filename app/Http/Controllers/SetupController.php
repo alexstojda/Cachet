@@ -195,7 +195,7 @@ class SetupController extends Controller
         });
 
         $v->sometimes(['env.mail_address', 'env.mail_username', 'env.mail_password'], 'required', function ($input) {
-            return $input->env['mail_driver'] !== 'log';
+            return !in_array($input->env['mail_driver'], ['log', 'smtp']);
         });
 
         if ($v->passes()) {
@@ -258,7 +258,7 @@ class SetupController extends Controller
             $envData = array_pull($postData, 'env');
 
             // Write the env to the .env file.
-            dispatch(new UpdateConfigCommand($envData));
+            execute(new UpdateConfigCommand($envData));
 
             if (Request::ajax()) {
                 return Response::json(['status' => 1]);

@@ -70,6 +70,7 @@ class CreateIncidentCommandHandler
     public function handle(CreateIncidentCommand $command)
     {
         $data = [
+            'user_id'  => $this->auth->user()->id,
             'name'     => $command->name,
             'status'   => $command->status,
             'visible'  => $command->visible,
@@ -118,7 +119,7 @@ class CreateIncidentCommandHandler
 
         // Update the component.
         if ($component = Component::find($command->component_id)) {
-            dispatch(new UpdateComponentCommand(
+            execute(new UpdateComponentCommand(
                 Component::find($command->component_id),
                 null,
                 null,
